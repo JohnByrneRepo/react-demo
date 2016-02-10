@@ -21627,8 +21627,8 @@ module.exports = App;
 'use strict';
 
 var React = require('react');
-
 var NavigationButton = require('./navigationButton.js');
+var MapView = require('./mapView.js');
 
 var HomeView = React.createClass({displayName: 'HomeView',
   render: function() {
@@ -21637,7 +21637,8 @@ var HomeView = React.createClass({displayName: 'HomeView',
             React.DOM.div({className: "title row"}, 
                 React.DOM.div(null, 
                     React.DOM.h2(null, "React Demo"), 
-                    "Routing demo, click ok to test"
+                    "Click ok to test routing", 
+                    MapView(null)
                 )
             ), 
 
@@ -21652,7 +21653,40 @@ var HomeView = React.createClass({displayName: 'HomeView',
 
 module.exports = HomeView;
 
-},{"./navigationButton.js":201,"react":198}],201:[function(require,module,exports){
+},{"./mapView.js":201,"./navigationButton.js":202,"react":198}],201:[function(require,module,exports){
+/** @jsx React.DOM */
+'use strict';
+
+var React = require('react');
+
+var MapView = React.createClass({displayName: 'MapView',
+    componentDidMount: function() {
+      var sitepoint = new google.maps.LatLng(-37.805723, 144.985360);
+      var mapOptions = {
+              zoom: 3,
+              center: sitepoint
+          },
+          map = new google.maps.Map(this.getDOMNode(), mapOptions),
+          marker = new google.maps.Marker({
+           map:map,
+           draggable:true,
+           animation: google.maps.Animation.DROP,
+           position: sitepoint
+      });
+      this.setState({
+        map: map
+      });
+    },
+    render: function() {
+        return (
+            React.DOM.div({id: "map"}, React.DOM.span(null, "Map"))
+        );
+    }
+});
+
+module.exports = MapView;
+
+},{"react":198}],202:[function(require,module,exports){
 /** @jsx React.DOM */
 'use strict';
 
@@ -21673,7 +21707,7 @@ var NavigationButton = React.createClass({displayName: 'NavigationButton',
 
 module.exports = NavigationButton;
 
-},{"react":198,"react-router":14}],202:[function(require,module,exports){
+},{"react":198,"react-router":14}],203:[function(require,module,exports){
 /** @jsx React.DOM */
 'use strict';
 
@@ -21703,7 +21737,7 @@ var OtherView = React.createClass({displayName: 'OtherView',
 
 module.exports = OtherView;
 
-},{"./navigationButton.js":201,"react":198}],203:[function(require,module,exports){
+},{"./navigationButton.js":202,"react":198}],204:[function(require,module,exports){
 /** @jsx React.DOM */
 'use strict';
 
@@ -21729,4 +21763,4 @@ var routes = (
 
 React.renderComponent(routes, document.getElementById('container'));
 
-},{"./components/app.js":199,"./components/homeView.js":200,"./components/otherView.js":202,"react":198,"react-router":14}]},{},[203])
+},{"./components/app.js":199,"./components/homeView.js":200,"./components/otherView.js":203,"react":198,"react-router":14}]},{},[204])

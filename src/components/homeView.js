@@ -2,8 +2,8 @@
 'use strict';
 
 var React = require('react');
-
 var NavigationButton = require('./navigationButton.js');
+var MapView = require('./mapView.js');
 
 var HomeView = React.createClass({
   render: function() {
@@ -12,7 +12,8 @@ var HomeView = React.createClass({
             <div className="title row">
                 <div>
                     <h2>React Demo</h2>
-                    Routing demo, click ok to test
+                    Click ok to test routing
+                    <MapView />
                 </div>
             </div>
 
