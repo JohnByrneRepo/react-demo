@@ -1,6 +1,2 @@
 # react-demo
-React demo featuring: 
-
--react router  
--button component to change routes
--google map
+React demo featuring router, button component to change routes and google map
